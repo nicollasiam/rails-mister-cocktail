@@ -14,6 +14,9 @@ class CocktailsController < ApplicationController
 
       obj['drinks'] ? picture = obj['drinks'][0]['strDrinkThumb'] : picture = 'https://lorempixel.com/500/500'
 
+      # Deal when has hash, but picture is nill
+      picture = 'https://lorempixel.com/500/500' unless picture
+
       @pictures << { name: cocktail.name, picture: picture }
     end
   end
