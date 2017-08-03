@@ -1,6 +1,24 @@
+require 'open-uri'
+require 'json'
+
 class CocktailsController < ApplicationController
   def index
     @cocktails = Cocktail.all
+
+    @pictures = []
+
+    @cocktails.each do |cocktail|
+      url = open("http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{cocktail.name.downcase}")
+      json = JSON.load(url)
+
+      if json['drinks']
+        picture = json['drinks'][0]['strDrinkThumb']
+      else
+        picture = 'https://lorempixel.com/500/500'
+      end
+
+      @pictures << { name: cocktail.name, picture: picture }
+    end
   end
 
   def show

@@ -1,0 +1,42 @@
+.card {
+  height: 300px;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px black;
+  transition: transform .5s ease;
+  margin: 15px 0;
+
+  &:hover {
+    transform: translate(0, -5px);
+  }
+
+  a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0);
+
+    &:hover {
+      background-color: rgba(0,0,0,.2);
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 4px;
+  }
+
+  h3 {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+  }
+}

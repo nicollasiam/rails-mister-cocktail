@@ -3,9 +3,13 @@
 <div class="row">
 
   <% @cocktails.each do |cocktail| %>
-    <div class="col-xs-4 col-xs-offset-4 text-center">
-      <h4><%= link_to cocktail.name, cocktail_path(cocktail) %></h4>
-      <hr style="border-color: black;">
+    <div class="col-xs-4">
+      <div class="card">
+        <%= image_tag @pictures.detect{|item| item[:name] == cocktail.name }[:picture] %>
+        <% #raise %>
+        <%= link_to "", cocktail_path(cocktail) %>
+        <h3><%= cocktail.name %></h3>
+      </div>
     </div>
   <% end %>
 
