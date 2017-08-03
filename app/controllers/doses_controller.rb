@@ -7,7 +7,7 @@ class DosesController < ApplicationController
 
   def create
     @dose = Dose.new(dose_params)
-    @ingredient = Ingredient.find(params[:dose][:ingredient])
+    @ingredient = Ingredient.find(params[:dose][:ingredient_id])
     @cocktail = Cocktail.find(params[:cocktail_id])
 
     @dose.ingredient = @ingredient
