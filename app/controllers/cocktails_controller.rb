@@ -8,10 +8,11 @@ class CocktailsController < ApplicationController
     @pictures = []
 
     @cocktails.each do |cocktail|
-      url = open("http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{cocktail.name.downcase}")
-      json = JSON.load(url)
+      url = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{cocktail.name.downcase}"
+      json = open(url)
+      obj = JSON.load(json)
 
-      json['drinks'] ? picture = json['drinks'][0]['strDrinkThumb'] : picture = 'https://lorempixel.com/500/500'
+      obj['drinks'] ? picture = obj['drinks'][0]['strDrinkThumb'] : picture = 'https://lorempixel.com/500/500'
 
       @pictures << { name: cocktail.name, picture: picture }
     end
