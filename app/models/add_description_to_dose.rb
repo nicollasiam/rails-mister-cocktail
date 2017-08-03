@@ -1,0 +1,2 @@
+class AddDescriptionToDose < ApplicationRecord
+end
