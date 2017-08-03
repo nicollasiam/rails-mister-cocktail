@@ -11,11 +11,7 @@ class CocktailsController < ApplicationController
       url = open("http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{cocktail.name.downcase}")
       json = JSON.load(url)
 
-      if json['drinks']
-        picture = json['drinks'][0]['strDrinkThumb']
-      else
-        picture = 'https://lorempixel.com/500/500'
-      end
+      json['drinks'] ? picture = json['drinks'][0]['strDrinkThumb'] : picture = 'https://lorempixel.com/500/500'
 
       @pictures << { name: cocktail.name, picture: picture }
     end
