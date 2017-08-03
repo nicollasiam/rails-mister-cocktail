@@ -8,7 +8,7 @@ class CocktailsController < ApplicationController
     @pictures = []
 
     @cocktails.each do |cocktail|
-      url = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{cocktail.name.downcase}"
+      url = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{CGI.escape cocktail.name.downcase}"
       json = open(url)
       obj = JSON.load(json)
 
