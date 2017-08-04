@@ -25,6 +25,17 @@ class DosesController < ApplicationController
     @ingredients = Ingredient.all.order(name: :asc)
   end
 
+  def update
+    # raise
+    @cocktail = Cocktail.find(params[:cocktail_id])
+    @dose = Dose.find(params[:id])
+    if @dose.update(dose_params)
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
@@ -35,6 +46,6 @@ class DosesController < ApplicationController
   private
 
   def dose_params
-    params.require(:dose).permit(:description, :amount)
+    params.require(:dose).permit(:description, :amount, :ingredient_id)
   end
 end

@@ -4,21 +4,6 @@ require 'json'
 class CocktailsController < ApplicationController
   def index
     @cocktails = Cocktail.all
-
-    @pictures = []
-
-    @cocktails.each do |cocktail|
-      url = "http://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{CGI.escape cocktail.name.downcase}"
-      json = open(url)
-      obj = JSON.load(json)
-
-      obj['drinks'] ? picture = obj['drinks'][0]['strDrinkThumb'] : picture = 'https://lorempixel.com/500/500'
-
-      # Deal when has hash, but picture is nill
-      picture = 'https://lorempixel.com/500/500' unless picture
-
-      @pictures << { name: cocktail.name, picture: picture }
-    end
   end
 
   def show
@@ -32,9 +17,13 @@ class CocktailsController < ApplicationController
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
+    @cocktail.remote_photo_url = params[:cocktail][:photo_url]
+
     if @cocktail.save
+      flash[:error] = nil
       redirect_to cocktail_path(@cocktail)
     else
+      flash[:error] = "Sorry, it was not possible to create your cocktail"
       render :new
     end
 
@@ -43,6 +32,6 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :photo, :photo_cache, :photo_url, :photo_url_cache)
   end
 end

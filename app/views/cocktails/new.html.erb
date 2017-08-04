@@ -1,9 +1,21 @@
 <h2 class="text-center">Give your new Cocktail a name</h2>
 
+<% if flash[:error] %>
+  <div class="alert alert-danger alert-warning fade in" role="alert">
+    <button class="close" data-dismiss="alert">×</button>
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
     <%= simple_form_for(@cocktail) do |f| %>
       <%= f.input :name %>
+      <%= f.input :photo %>
+      <%= f.input :photo_cache, as: :hidden %>
+      Or
+      <%= f.input :photo_url, label: 'URL' %>
+      <%= f.input :photo_url_cache, as: :hidden %>
       <%= f.submit class: 'btn btn-primary' %>
     <% end %>
   </div>
