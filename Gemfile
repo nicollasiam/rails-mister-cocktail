@@ -41,6 +41,9 @@ gem 'autoprefixer-rails'
 gem 'figaro'
 gem 'cloudinary'
 
+# CarrierWave to make it possible to users upload their own images
+gem 'carrierwave', '~> 0.11.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
