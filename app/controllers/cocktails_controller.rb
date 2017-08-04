@@ -26,7 +26,22 @@ class CocktailsController < ApplicationController
       flash[:error] = "Sorry, it was not possible to create your cocktail"
       render :new
     end
+  end
 
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    if @cocktail.destroy
+      redirect_to cocktails_path
+    else
+      render :index
+    end
+  end
+
+
+  def search
+    drink = params[:cocktail]
+    raise
+    @cocktails = Cocktail.where("name LIKE ?", "%#{drink}%")
   end
 
   private

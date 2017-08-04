@@ -19,6 +19,24 @@
 
     &:hover {
       background-color: rgba(0,0,0,.2);
+
+      i {
+        display: inline;
+
+        &:hover {
+          color: rgba(150,150,150,.5);
+          transform: scale(1.2)
+        }
+      }
+    }
+
+    i {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      color: rgba(150,150,150,1);
+      translate: transform .5s ease;
+      display: none;
     }
   }
 
